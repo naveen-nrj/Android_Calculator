@@ -12,80 +12,92 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 
-public class MainActivity extends AppCompatActivity implements OnClickListener{
+public class MainActivity extends AppCompatActivity {
 
-    private Button btnadd,btnmul,btnmin,btndiv;
+    private Button btnadd, btnmul, btnmin, btndiv;
     private TextView txtres;
-    private EditText etfirst,etsecond;
+    private EditText etfirst, etsecond;
+    float result;
+    int num1,num2;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new OnClickListener() {
+        btnadd = (Button) findViewById(R.id.btnAdd);
+        btndiv = (Button) findViewById(R.id.btnDiv);
+        btnmin = (Button) findViewById(R.id.btnMin);
+        btnmul = (Button) findViewById(R.id.btnMul);
+        etfirst = (EditText) findViewById(R.id.etFirst);
+        etsecond = (EditText) findViewById(R.id.etSecond);
+        txtres = (TextView) findViewById(R.id.txtRes);
+
+
+        btnadd.setOnClickListener(new View.OnClickListener() {
+
+
             @Override
+
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-                init();
+                num1=Integer.parseInt(etfirst.getText().toString());
+                num2=Integer.parseInt(etsecond.getText().toString());
+                result=num1+num2;
+                txtres.setText(String.valueOf(result));
 
             }
+
         });
-    }
 
-    private void init() {
-        btnadd=(Button)findViewById(R.id.btnAdd);
-        btndiv=(Button)findViewById(R.id.btnDiv);
-        btnmin=(Button)findViewById(R.id.btnMin);
-        btnmul=(Button)findViewById(R.id.btnMul);
-        etfirst=(EditText)findViewById(R.id.etFirst);
-        etsecond=(EditText)findViewById(R.id.etSecond);
-        txtres=(TextView)findViewById(R.id.txtRes);
-
-        btnmul.OnClickListener(this);
-        btndiv.OnClickListener(this);
-        btnmin.OnClickListener(this);
-        btnadd.OnClickListener(this);
+        btnmin.setOnClickListener(new View.OnClickListener() {
 
 
+            @Override
 
-    }
+            public void onClick(View view) {
+                num1=Integer.parseInt(etfirst.getText().toString());
+                num2=Integer.parseInt(etsecond.getText().toString());
+                result=num1-num2;
+                txtres.setText(String.valueOf(result));
+
+            }
+
+        });
+
+        btndiv.setOnClickListener(new View.OnClickListener() {
 
 
-    @Override
-    public void onClick(View view) {
-        String num1=etfirst.getText().toString();
-        String num2=etsecond.getText().toString();
+            @Override
 
-        switch(view.getId()) {
-            case R.id.btnAdd:
-                int addition = Integer.parseInt(num1) + Integer.parseInt(num2);
-                txtres.setText(String.valueOf(addition));
-                break;
-            case R.id.btnMin:
-                int subtraction = Integer.parseInt(num1) - Integer.parseInt(num2);
-                txtres.setText(String.valueOf(subtraction));
-                break;
-            case R.id.btnDiv:
-                try {
-                    int division = Integer.parseInt(num1) / Integer.parseInt(num2);
-                    txtres.setText(String.valueOf(division));
-                }
-                catch(Exception e) {
-                    txtres.setText("CANNOT DIVIDE");
-                }
-                break;
-            case R.id.btnMul:
-                int multiply = Integer.parseInt(num1) * Integer.parseInt(num2);
-                txtres.setText(String.valueOf(multiply));
-                break;
+            public void onClick(View view) {
+                num1=Integer.parseInt(etfirst.getText().toString());
+                num2=Integer.parseInt(etsecond.getText().toString());
+                result=num1/num2;
+                txtres.setText(String.valueOf(result));
 
-        }
+            }
+
+        });
+
+        btnmul.setOnClickListener(new View.OnClickListener() {
+
+
+            @Override
+
+            public void onClick(View view) {
+                num1=Integer.parseInt(etfirst.getText().toString());
+                num2=Integer.parseInt(etsecond.getText().toString());
+                result=num1*num2;
+                txtres.setText(String.valueOf(result));
+
+            }
+
+        });
+
+
+
+
 
     }
 }
